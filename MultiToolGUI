@@ -1,0 +1,84 @@
+import subprocess
+import sys
+from tkinter import Tk, Label, Entry, Button, StringVar, Radiobutton
+from colorama import init, Fore, Style
+
+# Initialize colorama
+init(autoreset=True)
+
+def run_naabu(target):
+    try:
+        command = ['naabu', '-host', target]
+        result = subprocess.run(command, capture_output=True, text=True)
+        print(Fore.CYAN + "Naabu Output:")
+        print(Fore.GREEN + result.stdout)
+    except Exception as e:
+        print(Fore.RED + f"An error occurred while running naabu: {e}")
+
+def run_nmap(target):
+    try:
+        command = ['nmap', target]
+        result = subprocess.run(command, capture_output=True, text=True)
+        print(Fore.CYAN + "Nmap Output:")
+        print(Fore.GREEN + result.stdout)
+    except Exception as e:
+        print(Fore.RED + f"An error occurred while running nmap: {e}")
+
+def run_scapy(target):
+    try:
+        from scapy.all import sr1, IP, ICMP
+        packet = IP(dst=target)/ICMP()
+        response = sr1(packet, timeout=2)
+        if response:
+            print(Fore.GREEN + f"Host {target} is up!")
+        else:
+            print(Fore.RED + f"No response from {target}.")
+    except ImportError:
+        print(Fore.RED + "Scapy is not installed. Please install it using: pip install scapy")
+    except Exception as e:
+        print(Fore.RED + f"An error occurred while running Scapy: {e}")
+
+def scan():
+    target = target_entry.get()
+    selected_tool = tool_var.get()
+
+    if not target:
+        result_label.config(text="Please enter a target.")
+        return
+
+    if selected_tool == "naabu":
+        run_naabu(target)
+    elif selected_tool == "nmap":
+        run_nmap(target)
+    elif selected_tool == "scapy":
+        run_scapy(target)
+    else:
+        result_label.config(text="Please select a valid tool.")
+
+# GUI setup
+root = Tk()
+root.title("Multi-Tool Network Scanner")
+
+# Tool selection
+tool_var = StringVar(value="naabu")
+
+Label(root, text="Select a Tool:").grid(row=0, column=0, padx=10, pady=10, sticky="w")
+Radiobutton(root, text="Naabu", variable=tool_var, value="naabu").grid(row=1, column=0, padx=20, pady=5, sticky="w")
+Radiobutton(root, text="Nmap", variable=tool_var, value="nmap").grid(row=2, column=0, padx=20, pady=5, sticky="w")
+Radiobutton(root, text="Scapy", variable=tool_var, value="scapy").grid(row=3, column=0, padx=20, pady=5, sticky="w")
+
+# Target input
+Label(root, text="Target:").grid(row=4, column=0, padx=10, pady=10, sticky="w")
+target_entry = Entry(root, width=30)
+target_entry.grid(row=4, column=1, padx=10, pady=10)
+
+# Run button
+run_button = Button(root, text="Scan", command=scan)
+run_button.grid(row=5, column=1, padx=10, pady=10)
+
+# Result label
+result_label = Label(root, text="")
+result_label.grid(row=6, column=0, columnspan=2, padx=10, pady=10)
+
+# Start the GUI
+root.mainloop()
