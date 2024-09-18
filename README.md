@@ -3,33 +3,31 @@
 This project is a multi-tool network scanner that supports scanning with Naabu, Nmap, and Scapy. It is available in two versions: a command-line interface & GUI
  •	Nmap: Install via your package manager (example for Ubuntu/Debian):
 
-sudo apt install nmap
+	sudo apt install nmap
 
 
 
 Clone the Repository
 
-	1.	Clone the repository:
-
-git clone https://github.com/kdairatchi/MultiToolV3
+	git clone https://github.com/kdairatchi/MultiToolV3
 
 
-	2.	Navigate into the project directory:
+2.	Navigate into the project directory:
 
-cd MultiToolV3
+		cd MultiToolV3
 
 
 
 Install Python Dependencies
 
-	1.	Install the required Python packages:
+1.	Install the required Python packages:
 
-pip install -r requirements.txt
+		pip install -r requirements.txt
 
 
-	2.	Install tkinter (required for the GUI version):
+2.	Install tkinter (required for the GUI version):
 
-sudo apt install python3-tk
+		sudo apt install python3-tk
 
 
 
@@ -39,9 +37,9 @@ Command-Line Version
 
 To use the command-line version of the tool:
 
-	1.	Run the script with a target IP or domain:
+1.	Run the script with a target IP or domain:
 
-python3 MultiToolCLI.py <target>
+		python3 MultiToolCLI.py <target>
 
 
 	2.	After running the command, you’ll be prompted to select a tool for scanning:
@@ -51,15 +49,15 @@ python3 MultiToolCLI.py <target>
 
 Example:
 
-python3 MultiToolCLI.py 192.168.1.1
+	python3 MultiToolCLI.py 192.168.1.1
 
 GUI Version
 
 To use the graphical interface version:
 
-	1.	Run the GUI script:
+1.	Run the GUI script:
 
-python3 MultiToolGUI.py
+		python3 MultiToolGUI.py
 
 
 	2.	You’ll see a window where you can:
@@ -69,11 +67,11 @@ python3 MultiToolGUI.py
 
 Requirements
 
-	•	Python 3.x
-	•	Naabu
-	•	Nmap
-	•	Scapy
-	•	Tkinter (for GUI)
+•	Python 3.x
+•	Naabu
+•	Nmap
+•	Scapy
+•	Tkinter (for GUI)
 
 To install the dependencies, refer to the Installation section above.
 
@@ -128,10 +126,8 @@ To make the scripts easier to run, you can set the Python scripts as executable:
 ```bash
 chmod +x MultiToolCLI.py
 chmod +x MultiToolGUI.py
-
-Now, you can run the scripts directly:
+ 
+.     run the scripts directly:
 
 ./MultiToolCLI.py <target>
 ./MultiToolGUI.py
-
-This guide should cover all aspects of setting up, running, and troubleshooting the Multi-Tool Network Scanner project. You can customize the repository, modify the README.md, and make necessary updates as you see fit.
