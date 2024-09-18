@@ -1,5 +1,4 @@
 import subprocess
-import sys
 from tkinter import Tk, Label, Entry, Button, StringVar, Radiobutton
 from colorama import init, Fore, Style
 
