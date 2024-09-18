@@ -1,4 +1,6 @@
+# Multi-Tool Network Scanner
 
+This project is a multi-tool network scanner that supports scanning with Naabu, Nmap, and Scapy. It is available in two versions: a command-line interface & GUI
  •	Nmap: Install via your package manager (example for Ubuntu/Debian):
 
 sudo apt install nmap
